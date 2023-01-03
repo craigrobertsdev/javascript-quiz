@@ -1,0 +1,37 @@
+/* reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+}
+
+main {
+  width: 60%;
+  margin-inline: auto;
+}
+
+#timer {
+  position: relative;
+  right: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+/* pops up for a short time after player selects quiz item  */
+#quiz-list.timer::after {
+  border-top: 2px solid grey;
+  color: grey;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  border-radius: 10px;
+}
