@@ -1,45 +1,76 @@
 html {
   height: 100vh;
-}
-
-body {
-  height: 100%;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 main {
   width: 60%;
   margin-inline: auto;
   height: 100%;
-  margin: auto;
+  margin-bottom: 10px;
 }
 
+/* flex box to display high scores and start game buttons */
 header {
   display: flex;
-  
+  align-content: space-between;
+  gap: 10px;
 }
 
+h1 {
+  text-align: center;
+}
+
+/* timeRemaining display */
 #timer {
-  position: relative;
-  right: 0;
-  font-size: 1.5em;
+  background-color: purple;
+  color: white;
+  height: 21px;
+  padding-top: 4px;
 }
 
+/* removes bullet points from list items */
 ul {
   list-style: none;
 }
 
-/* pops up for a short time after player selects quiz item  */
-#quiz-list.timer::after {
-  border-top: 2px solid grey;
-  color: grey;
-}
-
+/* creates space between list items */
 li {
   margin-bottom: 5px;
 }
 
+/* affects all game buttons */
 button {
   background-color: blue;
   color: white;
   border-radius: 10px;
+}
+
+/* space between initials input and accept button */
+input {
+  margin-right: 5px;
+}
+
+/* aligns the end game message to be over the input and score display */
+.end-msg {
+  text-align: left;
+}
+
+/* list to display each highscore */
+.hs-list {
+  list-style-type: none;
+  width: 40%;
+  margin: auto;
+}
+
+/* sets background colour of each highscore list item */
+.hs-list > li {
+  background-color: #cccccc;
+  color: black;
+}
+
+/* every second list item has different text and background colour */
+.hs-list > li:nth-child(2n) {
+  background-color: #333333;
+  color: white;
 }
