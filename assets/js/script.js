@@ -3,7 +3,7 @@ const highScoreBtn = document.querySelector('#high-score-btn');
 const startBtn = document.querySelector('#start-btn');
 const timerDisplay = document.querySelector('#timer');
 const mainSection = document.querySelector('main');
-const headingText = document.querySelector('#-text');
+const wrongSection = document.querySelector('#wrong');
 
 // Declare variables and initialise quiz questions
 let highscores = [];
@@ -111,20 +111,29 @@ function displayQuestion(nextQuestion) {
     mainSection.append(quizList);
   }
 
+  // called whenever an answer is pickewd
   function selectAnswer(event) {
     event.preventDefault();
-    // Determine whether the chosen answer was the correct one. if not, deduct 10 seconds from time remaining
-    //  != used here instead of !== as this section relies on JavaScript's type coercion.
-    if (event.target.dataset.key != currentQuestion.correct) {
-      timeRemaining -= 10;
-    }
-
     clearMainSection();
 
     // Remove question from questions
     let index = questions.indexOf(nextQuestion);
     questions.splice(index, 1);
     displayRemainingTime();
+
+    // Determine whether the chosen answer was the correct one. if not, deduct 10 seconds from time remaining
+    // != used here instead of !== as this section relies on JavaScript's type coercion.
+    // Displays message when incorrect answer is chosen
+    if (event.target.dataset.key != currentQuestion.correct) {
+      timeRemaining -= 10;
+      const wrong = document.createElement('h2');
+      wrong.textContent = 'WRONG!';
+      wrong.classList.add('wrong');
+      wrongSection.append(wrong);
+      setTimeout(() => {
+        wrongSection.innerHTML = '';
+      }, 500);
+    }
 
     // If no more questions, the game is over. Return to prevent continuing to access an empty array.
     if (questions.length === 0) {

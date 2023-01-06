@@ -51,6 +51,14 @@ input {
   margin-right: 5px;
 }
 
+.wrong {
+  color: #cccccc;
+  border-top: 2px solid #cccccc;
+  text-align: center;
+  width: 60%;
+  margin-inline: auto;
+}
+
 /* aligns the end game message to be over the input and score display */
 .end-msg {
   text-align: left;
