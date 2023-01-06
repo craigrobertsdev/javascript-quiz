@@ -3,7 +3,7 @@ const highScoreBtn = document.querySelector('#high-score-btn');
 const startBtn = document.querySelector('#start-btn');
 const timerDisplay = document.querySelector('#timer');
 const mainSection = document.querySelector('main');
-const wrongSection = document.querySelector('#wrong');
+const correctIncorrectSection = document.querySelector('#wrong');
 
 // Declare variables and initialise quiz questions
 let highscores = [];
@@ -12,6 +12,7 @@ let questions = [];
 let gameOver = false;
 let currentQuestion, timer;
 let timeRemaining = 0;
+let correct;
 
 // provides the base set of questions for each round of the game. these will be randomly chosen based on what remains each time a new question is generated
 function setQuestions() {
@@ -126,14 +127,12 @@ function displayQuestion(nextQuestion) {
     // Displays message when incorrect answer is chosen
     if (event.target.dataset.key != currentQuestion.correct) {
       timeRemaining -= 10;
-      const wrong = document.createElement('h2');
-      wrong.textContent = 'WRONG!';
-      wrong.classList.add('wrong');
-      wrongSection.append(wrong);
-      setTimeout(() => {
-        wrongSection.innerHTML = '';
-      }, 500);
+      correct = false;
     }
+
+    // display text based on whether or not the selected answer was correct
+    displayCorrectIncorrect(correct);
+    correct = true;
 
     // If no more questions, the game is over. Return to prevent continuing to access an empty array.
     if (questions.length === 0) {
@@ -144,6 +143,21 @@ function displayQuestion(nextQuestion) {
     }
     displayQuestion(questions[Math.floor(Math.random() * questions.length)]);
   }
+}
+
+function displayCorrectIncorrect(correct) {
+  const rightWrong = document.createElement('h2');
+  if (!correct) {
+    rightWrong.textContent = 'INCORRECT!';
+  } else {
+    rightWrong.textContent = 'CORRECT!';
+  }
+  rightWrong.classList.add('wrong');
+
+  correctIncorrectSection.append(rightWrong);
+  setTimeout(() => {
+    correctIncorrectSection.innerHTML = '';
+  }, 500);
 }
 
 // displays a congratulations message, field to enter initials and the final score
